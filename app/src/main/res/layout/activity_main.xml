@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.prohua.liftwakeup.CoreActivity">
+
+    <com.prohua.liftwakeup.weight.TitleBar
+        android:id="@+id/titleBar"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:textColor="#3c3c3c"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:text="为了保证正常使用,需要用户完成以下两点"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:id="@+id/openCloseScreen"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:padding="10dp"
+                    android:src="@drawable/ic_home_fuzhu"
+                    android:scaleType="centerInside"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/openCloseScreenText"
+                    android:textColor="#3c3c3c"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text="①点击激活\n自动锁屏功能"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:padding="10dp"
+                    android:src="@drawable/ic_home_lock"
+                    android:scaleType="centerInside"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textColor="#3c3c3c"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text="②多任务\n锁定应用"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

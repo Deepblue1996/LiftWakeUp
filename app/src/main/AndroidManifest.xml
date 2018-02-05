@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.prohua.liftwakeup" >
+
+    <!--多任务列表隐藏任务 android:excludeFromRecents="true" -->
+    <application
+        android:name=".application.CoreApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:persistent="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".CoreActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <service android:name=".service.HardwareMonitoringLocalService"
+            android:enabled="true"
+            android:exported="true"
+            android:persistent="true"
+            android:process=":local" />
+        <service android:name=".service.HardwareMonitoringRemoteService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote" />
+        <service android:name=".service.HardwareMonitoringJobService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE">
+            <intent-filter android:priority="1000" >
+                <action android:name="com.prohua.jobservice" />
+            </intent-filter>
+        </service>
+        <receiver
+            android:name="com.prohua.liftwakeup.broadcast.BootReceiver"
+            android:process=":boot" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="com.prohua.liftwakeup.destroy" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".broadcast.AdminManageReceiver"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_DEVICE_ADMIN" >
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".broadcast.AlarmReceiver"
+            android:process=":alarm" >
+            <intent-filter>
+                <action android:name="com.prohua.liftwakeup.destroy_timer"/>
+            </intent-filter>
+        </receiver>
+    </application>
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"
+        tools:ignore="ManifestOrder" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+</manifest>
